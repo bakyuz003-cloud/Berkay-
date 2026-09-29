@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<rect width="512" height="512" rx="112" fill="#171713"/>
+<circle cx="256" cy="256" r="205" fill="none" stroke="#cdb79a" stroke-width="18"/>
+<circle cx="256" cy="256" r="166" fill="none" stroke="#48443c" stroke-width="8"/>
+<text x="256" y="250" text-anchor="middle" fill="#faf8f3" font-family="Arial,Helvetica,sans-serif" font-size="92" font-weight="700" letter-spacing="4">LOOK</text>
+<text x="256" y="306" text-anchor="middle" fill="#cdb79a" font-family="Arial,Helvetica,sans-serif" font-size="26" letter-spacing="8">DIE FRISEURE</text>
+</svg>
