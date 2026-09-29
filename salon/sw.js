@@ -1,5 +1,5 @@
-const CACHE='look-friseure-v3';
-const CORE=['./','./index.html','./manifest.webmanifest','./icon.svg'];
+const CACHE='look-friseure-v4';
+const CORE=['./','./index.html','./manifest.webmanifest','./icon.svg','./icon-192.png','./icon-512.png','./apple-touch-icon.png'];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)));
   self.skipWaiting();
