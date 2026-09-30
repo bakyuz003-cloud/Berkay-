@@ -5,3 +5,13 @@ const r=$$('.reveal');if('IntersectionObserver'in window){const io=new Intersect
 const gs=$('.geo-scroll');if(gs&&matchMedia('(max-width:880px)').matches){requestAnimationFrame(()=>{gs.scrollLeft=Math.max(0,(gs.scrollWidth-gs.clientWidth)*.55)})}
 const f=$('#project-form');if(f){const lines=()=>{const d=new FormData(f);const pairs=[['Projekt',d.get('projekt')],['Ort',d.get('ort')],['Fläche',d.get('flaeche')],['Leistung',d.get('leistung')],['Termin',d.get('termin')],['Name',d.get('name')],['Telefon',d.get('telefon')],['E-Mail',d.get('email')],['Nachricht',d.get('nachricht')]];return pairs.filter(([,v])=>String(v||'').trim()).map(([k,v])=>k+': '+String(v).trim()).join('\n')};f.addEventListener('submit',e=>{e.preventDefault();location.href='mailto:berzanak52@gmail.com?subject='+encodeURIComponent('Projektanfrage BERZAN Bau')+'&body='+encodeURIComponent(lines())});$('[data-wa]',f)?.addEventListener('click',()=>window.open('https://wa.me/4917632337025?text='+encodeURIComponent(lines()),'_blank','noopener'))}
 })();
+/* BERZAN geografische Projektkarte: Stadtmittelpunkte, keine Baustellenadressen. */
+(()=>{const maps=document.querySelectorAll('[data-project-map]');if(!maps.length)return;
+const points=[['Leipheim','2.046 m²',48.445,10.219,'leipheim'],['Werder','750 m²',52.377,12.935,'werder'],['Aubel','762 m²',50.704,5.858,'aubel'],['Erpeldange','486 m²',49.864,6.117,'erpeldange'],['Koerich','120 m²',49.671,5.951,'koerich']];
+if(typeof L==='undefined'){maps.forEach(e=>{e.innerHTML='<p>Kartenkacheln nicht verfügbar. Die Städte können Sie direkt unter der Karte auswählen.</p>'});return}
+maps.forEach(el=>{const map=L.map(el,{scrollWheelZoom:false}).setView([50,8],6);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:17,attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>-Mitwirkende'}).addTo(map);
+const bounds=[];for(const [city,area,lat,lon,slug] of points){bounds.push([lat,lon]);const icon=L.divIcon({className:'',html:'<span class="berzan-map-pin" aria-label="'+city+'"></span>',iconSize:[22,22],iconAnchor:[11,11]});L.marker([lat,lon],{icon,title:city+' '+area}).addTo(map).bindPopup('<b>'+city+' · '+area+'</b><br><a href="referenzen.html#projekt-'+slug+'">Projekt ansehen →</a>')}
+const hq=L.divIcon({className:'',html:'<span class="berzan-hq-pin"></span>',iconSize:[14,14]});L.marker([49.634,8.36],{icon:hq,title:'Worms – Hauptsitz'}).addTo(map).bindPopup('Worms · Hauptsitz');
+map.fitBounds(bounds,{padding:[35,35],maxZoom:7});setTimeout(()=>map.invalidateSize(),200);
+});
+})();
