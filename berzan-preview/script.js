@@ -15,3 +15,4 @@ const hq=L.divIcon({className:'',html:'<span class="berzan-hq-pin"></span>',icon
 map.fitBounds(bounds,{padding:[35,35],maxZoom:7});setTimeout(()=>map.invalidateSize(),200);
 });
 })();
+(()=>{if(!location.pathname.includes('/berzan-preview/'))return;const tag=document.createElement('div');tag.className='staging-hint';tag.setAttribute('role','note');tag.innerHTML='BERZAN Online-Vorschau · <a href="preview.html">Alle Seiten</a> · <a href="handy-vorschau.html">Handy-Vorschau</a> · <a href="https://www.berzanbau.de/" rel="noopener">Produktive Website</a>';const skip=document.querySelector('.skip');document.body.insertBefore(tag,skip?skip.nextSibling:document.body.firstChild)})();
